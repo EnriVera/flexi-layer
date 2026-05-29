@@ -1,150 +1,150 @@
 # flexi-modal
 
-Web Component para modales/popups accesible, stackeable y framework-agnostic. Construido con [Lit 3](https://lit.dev/).
+An accessible, stackable, framework-agnostic modal/popup web component built with [Lit 3](https://lit.dev/).
 
-## Características
+## Features
 
-- **Accesible** — Soporte completo de ARIA, focus trapping y navegación por teclado
-- **Stackeable** — Múltiples modales apilados con gestión automática del stack
-- **Framework-agnostic** — Funciona con cualquier framework o vanilla JS via Web Components
-- **Animaciones** — Transiciones suaves con Web Animations API
-- **API por eventos** — Controla los modales mediante un event bus central
-- **TypeScript** — Tipado completo incluidos
+- **Accessible** — Full ARIA support, focus trapping, and keyboard navigation
+- **Stackable** — Multiple modals stacked with automatic stack management
+- **Framework-agnostic** — Works with any framework or vanilla JS via Web Components
+- **Animations** — Smooth transitions with Web Animations API
+- **Event-driven API** — Control modals via a central event bus
+- **TypeScript** — Full type safety included
 
-## Instalación
+## Installation
 
 ```bash
 npm install flexi-modal
 ```
 
-## Uso rápido
+## Quick Start
 
-### Importar el módulo
+### Import the module load the script
 
 ```html
 <script type="module" src="flexi-modal/dist/flexi-modal.es.js"></script>
 ```
 
-### Modal básico
+### Basic Modal
 
 ```html
-<flexi-modal id="mi-modal" title="Título">
-  <p>Contenido del modal</p>
+<flexi-modal id="my-modal" title="Title">
+  <p>Modal content goes here</p>
 </flexi-modal>
 
-<button onclick="document.querySelector('#mi-modal').show()">
-  Abrir modal
+<button onclick="document.querySelector('#my-modal').show()">
+  Open Modal
 </button>
 ```
 
-## API del componente
+## Component API
 
-### Atributos/Propiedades
+### Attributes / Properties
 
-| Atributo | Tipo | Default | Descripción |
-|----------|------|---------|-------------|
-| `open` | `Boolean` | `false` | Estado abierto/cerrado |
-| `title` | `String` | `""` | Título del modal |
-| `size` | `"sm"` `"md"` `"lg"` `"full"` | `"md"` | Tamaño del modal |
-| `close-on-overlay` | `Boolean` | `true` | Cerrar al clickear el overlay |
-| `close-on-escape` | `Boolean` | `true` | Cerrar con tecla Escape |
-| `loading` | `Boolean` | `false` | Muestra un spinner de carga |
+| Attribute          | Type                    | Default | Description                              |
+|--------------------|-------------------------|---------|------------------------------------------|
+| `open`             | `Boolean`               | `false` | Open/closed state                        |
+| `title`            | `String`                | `""`    | Modal title                              |
+| `size`             | `"sm"` `"md"` `"lg"` `"full"` | `"md"` | Modal size                          |
+| `close-on-overlay` | `Boolean`              | `true`  | Close on overlay click                   |
+| `close-on-escape`  | `Boolean`              | `true`  | Close on Escape key                      |
+| `loading`          | `Boolean`               | `false` | Show loading spinner                     |
 
-### Métodos
+### Methods
 
 ```javascript
-modal.show()           // Abre el modal
-modal.hide()           // Cierra el modal
-modal.toggle()         // Alterna el estado
-modal.push(content)    // Agrega contenido dinámicas
+modal.show()           // Open the modal
+modal.hide()           // Close the modal
+modal.toggle()         // Toggle the state
+modal.push(content)    // Push dynamic content
 ```
 
-### Eventos
+### Events
 
-| Evento | Detalle | Descripción |
-|--------|---------|-------------|
-| `flexi:open` | `{ target }` | Se dispatchea al abrir |
-| `flexi:close` | `{ target }` | Se dispatchea al cerrar |
-| `flexi:show` | — | Se dispatchea luego de la animación de entrada |
-| `flexi:push` | `{ content, position }` | Se dispatchea al hacer push de contenido |
-| `flexi:backdrop-click` | `{ originalEvent }` | Se dispatchea al clickear el overlay |
+| Event                | Detail                  | Description                                 |
+|----------------------|-------------------------|---------------------------------------------|
+| `flexi:open`         | `{ target }`            | Dispatched when opening                    |
+| `flexi:close`        | `{ target }`            | Dispatched when closing                     |
+| `flexi:show`         | —                       | Dispatched after show animation completes   |
+| `flexi:push`         | `{ content, position }` | Dispatched when content is pushed           |
+| `flexi:backdrop-click`| `{ originalEvent }`    | Dispatched on overlay click                |
 
-## API por eventos (FlexiEventBus)
+## Event Bus API (FlexiEventBus)
 
-Para control centralizado de modales en toda la aplicación:
+For centralized modal control across your entire app:
 
 ```javascript
 import { FlexiEventBus } from 'flexi-modal';
 
-// Abrir
-FlexiEventBus.open({ target: '#mi-modal' });
+// Open
+FlexiEventBus.open({ target: '#my-modal' });
 
-// Cerrar
-FlexiEventBus.close({ target: '#mi-modal' });
+// Close
+FlexiEventBus.close({ target: '#my-modal' });
 
-// Cerrar todos
+// Close all
 FlexiEventBus.closeAll();
 
-// Push de contenido
+// Push content
 FlexiEventBus.push({
   target: '#modal',
-  content: '<p>Nuevo contenido</p>'
+  content: '<p>New content</p>'
 });
 ```
 
-## Tamaños
+## Sizes
 
 ```html
-<flexi-modal size="sm">...</flexi-modal>   <!-- Pequeño -->
+<flexi-modal size="sm">...</flexi-modal>   <!-- Small -->
 <flexi-modal size="md">...</flexi-modal>   <!-- Default -->
-<flexi-modal size="lg">...</flexi-modal>   <!-- Grande -->
-<flexi-modal size="full">...</flexi-modal> <!-- Pantalla completa -->
+<flexi-modal size="lg">...</flexi-modal>   <!-- Large -->
+<flexi-modal size="full">...</flexi-modal> <!-- Full screen -->
 ```
 
-## Accesibilidad
+## Accessibility
 
-- `role="dialog"` y `aria-modal="true"` en el modal
-- `aria-labelledby` apunta al título
-- Focus trapping: el foco se mantiene dentro del modal
-- Navegación por teclado: Tab, Shift+Tab, Escape
-- Overlay con `role="presentation"`
+- `role="dialog"` and `aria-modal="true"` on the modal
+- `aria-labelledby` points to the title
+- Focus trapping: focus stays within the modal
+- Keyboard navigation: Tab, Shift+Tab, Escape
+- Overlay with `role="presentation"`
 
-## Desarrollo
+## Development
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Modo desarrollo
+# Development mode
 npm run dev
 
-# Build de producción
+# Production build
 npm run build
 
 # Tests
 npm test
 
-# Tests en modo watch
+# Tests in watch mode
 npm run test:watch
 ```
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 src/
 ├── core/
-│   ├── types.ts         # Interfaces de dominio
-│   └── constants.ts     # Constantes y eventos
+│   ├── types.ts         # Domain interfaces
+│   └── constants.ts     # Constants and events
 ├── infra/
 │   ├── animations.ts    # Web Animations API
-│   ├── event-bus.ts     # Event bus genérico
-│   ├── flexi-bus.ts     # Bus para modales
+│   ├── event-bus.ts     # Generic event bus
+│   ├── flexi-bus.ts     # Modal bus
 │   └── focus-trap.ts    # Focus trapping
 ├── components/
 │   └── flexi-modal.ts   # Web Component
 ├── styles/
-│   └── modal.css.ts     # Estilos encapsulados
-└── index.ts            # Export principal
+│   └── modal.css.ts    # Encapsulated styles
+└── index.ts            # Main export
 ```
 
 ## Browser support
@@ -153,8 +153,8 @@ src/
 - Firefox 78+
 - Safari 14+
 
-Requiere soporte de Web Components y CSS custom properties.
+Requires Web Components and CSS custom properties support.
 
-## Licencia
+## License
 
 MIT
