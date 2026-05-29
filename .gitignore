@@ -1,0 +1,47 @@
+# Dependencies
+/node_modules/
+
+# Build output
+/dist/
+
+# Test artifacts
+/test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local AI runtime state
+# Generado por agentes/Devin/Claude/GitHub Copilot/Windsurf/pi
+.agents/
+.all/
+.atl/
+.claude/
+.pi/
+.windsurf/
+
+# Local skill definitions (no comparten entre devs)
+skills-lock.json
+
+# Demo that can be rebuilt
+/demo/
+
+# OpenSpec artifacts (specs + change log)
+/openspec/
+
+# Lock files (usar lock ملف واحد si hay uno sóla)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Entorno local
+.env
+.env.local
+.env.*.local
