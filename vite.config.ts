@@ -5,9 +5,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'FlexiModal',
+      name: 'FlexiLayer',
       formats: ['es', 'umd'],
-      fileName: (format) => `flexi-modal.${format}.js`,
+      fileName: (format) => `flexi-layer.${format}.js`,
     },
     rollupOptions: {
       external: ['lit'],
@@ -22,11 +22,5 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'src'),
     },
-  },
-  test: {
-    globals: true,
-    environment: 'happy-dom',
-    include: ['src/**/*.test.ts'],
-    exclude: ['tests/**'],
   },
 });
